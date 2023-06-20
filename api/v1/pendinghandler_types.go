@@ -17,6 +17,8 @@ limitations under the License.
 package v1
 
 import (
+	"time"
+
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -28,8 +30,13 @@ type PendingHandlerSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of PendingHandler. Edit pendinghandler_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Namespaces for watching pods
+	// * means all namespaces
+	Namespace string `json:"namespace,omitempty"`
+
+	PendingConditions []PendingConditionsEntry `json:"pendingConditions,omitempty"`
+
+	PendingContainerStatuses []PendingContainerStatusEntry `json:"pendingContainerStatuses,omitempty"`
 }
 
 // PendingHandlerStatus defines the observed state of PendingHandler
@@ -48,6 +55,16 @@ type PendingHandler struct {
 
 	Spec   PendingHandlerSpec   `json:"spec,omitempty"`
 	Status PendingHandlerStatus `json:"status,omitempty"`
+}
+
+type PendingConditionsEntry struct {
+	Condition  string        `json:"condition,omitempty"`
+	Toleration time.Duration `json:"toleration,omitempty"`
+}
+
+type PendingContainerStatusEntry struct {
+	Condition  string        `json:"condition,omitempty"`
+	Toleration time.Duration `json:"toleration,omitempty"`
 }
 
 //+kubebuilder:object:root=true

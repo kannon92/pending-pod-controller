@@ -1,0 +1,9 @@
+apiVersion: test-apps.test-apps/v1
+kind: PendingHandler
+metadata:
+  name: invalid-image-name
+spec:
+  namespace: default
+  pendingContainerStatuses:
+    - condition: InvalidImageName
+      toleration: 0
