@@ -1,0 +1,27 @@
+# permissions for end users to view pendinghandlers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: pendinghandler-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: pending-pod-controller
+    app.kubernetes.io/part-of: pending-pod-controller
+    app.kubernetes.io/managed-by: kustomize
+  name: pendinghandler-viewer-role
+rules:
+- apiGroups:
+  - test-apps.test-apps
+  resources:
+  - pendinghandlers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - test-apps.test-apps
+  resources:
+  - pendinghandlers/status
+  verbs:
+  - get

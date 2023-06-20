@@ -1,0 +1,31 @@
+# permissions for end users to edit pendinghandlers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: pendinghandler-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: pending-pod-controller
+    app.kubernetes.io/part-of: pending-pod-controller
+    app.kubernetes.io/managed-by: kustomize
+  name: pendinghandler-editor-role
+rules:
+- apiGroups:
+  - test-apps.test-apps
+  resources:
+  - pendinghandlers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - test-apps.test-apps
+  resources:
+  - pendinghandlers/status
+  verbs:
+  - get

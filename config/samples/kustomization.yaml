@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- test-apps_v1_pendinghandler.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

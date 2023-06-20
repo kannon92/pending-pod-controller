@@ -1,0 +1,12 @@
+apiVersion: test-apps.test-apps/v1
+kind: PendingHandler
+metadata:
+  labels:
+    app.kubernetes.io/name: pendinghandler
+    app.kubernetes.io/instance: pendinghandler-sample
+    app.kubernetes.io/part-of: pending-pod-controller
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: pending-pod-controller
+  name: pendinghandler-sample
+spec:
+  # TODO(user): Add fields here
